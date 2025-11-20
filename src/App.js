@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import PreparationPanel from './components/PreparationPanel';
 import ChargerCard from './components/ChargerCard';
 import './App.css';
 
 function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [selectedDrink, setSelectedDrink] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
   const [isPreparingDrink, setIsPreparingDrink] = useState(false);
-  const [gunAnimation, setGunAnimation] = useState(false);
-  const [gunWiggle, setGunWiggle] = useState(false);
+  
 
   // Update time every second
   useEffect(() => {
@@ -18,31 +18,17 @@ function App() {
     return () => clearInterval(timer);
   }, []);
 
-  const handleDrinkSelection = (drinkType) => {
+  const handleDrinkSelection = (index) => {
     if (isPreparingDrink) return;
-    
-    setSelectedDrink(drinkType);
+    setSelectedIndex(index);
     setIsPreparingDrink(true);
-    
-    // Simulate drink preparation (18 seconds total - 6 steps × 3 seconds each)
     setTimeout(() => {
       setIsPreparingDrink(false);
-      setGunAnimation(true);
-      
-      // Gun animation duration
-      setTimeout(() => {
-        setGunAnimation(false);
-        setSelectedDrink(null);
-      }, 3000);
+      setSelectedIndex(null);
     }, 18000);
   };
 
-  const handleGunClick = () => {
-    if (!isPreparingDrink && !gunAnimation) {
-      setGunWiggle(true);
-      setTimeout(() => setGunWiggle(false), 600);
-    }
-  };
+  
 
   return (
     <div className="app">
@@ -69,26 +55,30 @@ function App() {
       </header>
 
       <main className="app-main">
-        <div className="charger-cards">
+        <div className="cards-grid" aria-label="Beer cards">
           <ChargerCard
-            drinkType="cocacola"
-            isActive={selectedDrink === 'cocacola'}
-            isPreparing={isPreparingDrink && selectedDrink === 'cocacola'}
-            onSelect={() => handleDrinkSelection('cocacola')}
-            disabled={isPreparingDrink && selectedDrink !== 'cocacola'}
+            isActive={true}
+            disabled={isPreparingDrink && selectedIndex !== null && selectedIndex !== 0}
           />
           <ChargerCard
-            drinkType="beer"
-            isActive={selectedDrink === 'beer'}
-            isPreparing={isPreparingDrink && selectedDrink === 'beer'}
-            onSelect={() => handleDrinkSelection('beer')}
-            disabled={isPreparingDrink && selectedDrink !== 'beer'}
+            isActive={true}
+            disabled={isPreparingDrink && selectedIndex !== null && selectedIndex !== 1}
           />
         </div>
         
         <div className="center-logo-section">
           <img src="/quench_symbol.png" alt="Quench Logo" className="center-logo" />
         </div>
+
+        {/* <PreparationPanel
+          visible={isPreparingDrink}
+          onClose={() => {
+            setIsPreparingDrink(false);
+            setSelectedIndex(null);
+            
+          }}
+          stepDuration={3000}
+        /> */}
       </main>
 
 

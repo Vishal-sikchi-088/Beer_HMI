@@ -17,7 +17,7 @@ body {
   -ms-user-select: none;
 }
 
-.App {
+.app {
   width: 100vw;
   height: 100vh;
   min-height: 600px;
@@ -148,20 +148,74 @@ body {
 }
 
 /* Cards Container */
-.charger-cards {
+.cards-grid {
   display: flex;
-  gap: 40px;
+  width: 95%;
+  /* max-width: 900px; */
+  height: 570px;
   justify-content: center;
   align-items: stretch;
-  width: 100%;
-  max-width: 900px;
-  height: 500px;
+  gap: 40px;
+}
+
+.cards-grid .drink-card {
+  flex: 1;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  z-index: 5;
+}
+
+.carousel-arrow:hover {
+  background: rgba(0, 0, 0, 0.85);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow--left { left: 10px; }
+.carousel-arrow--right { right: 10px; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.carousel-dot--active {
+  background: #FFB300;
+  transform: scale(1.2);
 }
 
 /* Individual Card Styling */
 .drink-card {
   flex: 1;
-  max-width: 400px;
+  /* max-width: 400px; */
   height: 100%;
   background: rgba(20, 20, 20, 0.8);
   border-radius: 20px;
@@ -184,16 +238,7 @@ body {
 }
 
 /* Coca-Cola Card Specific */
-.drink-card--cocacola {
-  border-color: rgba(198, 40, 40, 0.3);
-}
-
-.drink-card--cocacola:hover {
-  border-color: rgba(198, 40, 40, 0.6);
-  box-shadow: 
-    0 20px 60px rgba(198, 40, 40, 0.2),
-    inset 0 1px 0 rgba(198, 40, 40, 0.1);
-}
+/* Coca-Cola styles removed to enforce beer-only UI */
 
 /* Beer Card Specific */
 .drink-card--beer {
@@ -332,15 +377,14 @@ body {
     font-size: 0.9rem;
   }
   
-  .charger-cards {
-    flex-direction: column;
+  /* .cards-grid {
+    max-width: none;
+    height: 300px;
     gap: 20px;
-    height: auto;
-  }
+  } */
   
   .drink-card {
-    max-width: none;
-    height: 250px;
+    height: 100%;
   }
   
   .center-logo {
@@ -411,7 +455,7 @@ body {
   }
   
   .drink-card {
-    height: 200px;
+    height: 280px;
   }
   
   
