@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import ChargerCard from './components/ChargerCard';
+import TicTacToe from './components/TicTacToe';
 import './App.css';
 
 function App() {
   const [selectedIndex] = useState(null);
   const [isPreparingDrink] = useState(false);
+  const [showTTT, setShowTTT] = useState(false);
   
 
   
@@ -48,8 +50,20 @@ function App() {
         </div>
         
         <div className="center-logo-section">
-          <img src="/quench_symbol.png" alt="Quench Logo" className="center-logo" />
+          <img
+            src="/quench_symbol.png"
+            alt="Quench Logo"
+            className="center-logo"
+            onClick={() => setShowTTT((v) => !v)}
+          />
         </div>
+
+        {showTTT && (
+          <>
+            <div className="ttt-backdrop" onClick={() => setShowTTT(false)} />
+            <TicTacToe onClose={() => setShowTTT(false)} />
+          </>
+        )}
 
         {/* <PreparationPanel
           visible={isPreparingDrink}

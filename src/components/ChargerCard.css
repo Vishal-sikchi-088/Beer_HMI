@@ -12,7 +12,7 @@
   overflow: hidden;
   cursor: pointer;
   transition: none;
-  backdrop-filter: blur(6px);
+  backdrop-filter: none;
   box-shadow: none;
   contain: layout paint style;
   content-visibility: auto;
@@ -392,9 +392,7 @@
 .drink-card__icon,
 .drink-card__bubble,
 .drink-card__foam-splash,
-.loop-video__layer {
-  will-change: transform, opacity;
-}
+.loop-video__layer { }
 .loop-video {
   position: relative;
   width: 100%;
