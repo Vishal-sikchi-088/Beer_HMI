@@ -3,7 +3,7 @@
   position: relative;
   width: 100%;
   height: 500px;
-  background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+  background: #121212;
   border: 2px solid rgba(224, 224, 224, 0.1);
   border-radius: 24px;
   padding: 24px;
@@ -11,24 +11,20 @@
   flex-direction: column;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: none;
+  backdrop-filter: blur(6px);
+  box-shadow: none;
+  contain: layout paint style;
+  content-visibility: auto;
 }
 
-.drink-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
+.drink-card:hover { }
 
-.drink-card--active {
-  transform: translateY(-4px) scale(1.01);
-  animation: activeGlow 2s ease-in-out infinite alternate;
-}
+.drink-card--active { }
 
 .drink-card--preparing {
   pointer-events: none;
-  animation: preparingPulse 1.5s ease-in-out infinite;
+  animation: none;
 }
 
 .drink-card--disabled {
@@ -53,17 +49,13 @@
   justify-content: center;
   width: 60px;
   height: 60px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
 }
 
-.drink-card__icon {
-  font-size: 28px;
-  filter: drop-shadow(0 0 8px currentColor);
-  animation: iconFloat 3s ease-in-out infinite;
-}
+.drink-card__icon { font-size: 28px; filter: none; }
 
 .drink-card__title-container {
   flex: 1;
@@ -93,7 +85,7 @@
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  animation: statusPulse 2s ease-in-out infinite;
+  animation: none;
 }
 
 /* Video Background */
@@ -113,26 +105,7 @@
   border-radius: 16px;
 }
 
-.seamless-video {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.seamless-video__layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.seamless-video__layer--active {
-  opacity: 1;
-}
+/* removed legacy seamless-video classes (unused) */
 
 .drink-card__video-overlay {
   position: absolute;
@@ -149,28 +122,18 @@
   border-radius: 16px;
 }
 
-.drink-card__video-control {
+.video-toggle {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 40px;
-  height: 40px;
-  background: rgba(0, 0, 0, 0.7);
-  border: none;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  top: 12px;
+  right: 12px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
 }
 
-.drink-card__video-control:hover {
-  background: rgba(0, 0, 0, 0.9);
-  transform: scale(1.1);
-}
+.video-toggle:hover { }
 
 /* Progress Section */
 .drink-card__progress-section {
@@ -238,8 +201,7 @@
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 16px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  animation: stepTextGlow 1s ease-in-out infinite alternate;
+  text-shadow: none;
 }
 
 .drink-card__step-indicator {
@@ -248,17 +210,9 @@
   gap: 8px;
 }
 
-.drink-card__step-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #333;
-  transition: all 0.3s ease;
-}
+.drink-card__step-dot { width: 12px; height: 12px; border-radius: 50%; background: #333; }
 
-.drink-card__step-dot--active {
-  animation: dotPulse 1s ease-in-out infinite;
-}
+.drink-card__step-dot--active { }
 
 /* Interactive Bubbles (Coca-Cola) */
 .drink-card__bubbles {
@@ -271,16 +225,7 @@
   z-index: 5;
 }
 
-.drink-card__bubble {
-  position: absolute;
-  background: radial-gradient(circle, rgba(198, 40, 40, 0.6), rgba(198, 40, 40, 0.2));
-  border-radius: 50%;
-  cursor: pointer;
-  pointer-events: all;
-  animation: bubbleFloat 4s ease-in-out infinite;
-  box-shadow: 0 0 15px rgba(198, 40, 40, 0.4);
-  transition: all 0.3s ease;
-}
+.drink-card__bubble { display: none; }
 
 .drink-card__bubble:hover {
   transform: scale(1.2);
@@ -302,16 +247,7 @@
   z-index: 5;
 }
 
-.drink-card__foam-splash {
-  position: absolute;
-  background: radial-gradient(circle, rgba(255, 179, 0, 0.7), rgba(255, 179, 0, 0.3));
-  border-radius: 50%;
-  cursor: pointer;
-  pointer-events: all;
-  animation: foamFloat 3s ease-in-out infinite;
-  box-shadow: 0 0 20px rgba(255, 179, 0, 0.4);
-  transition: all 0.3s ease;
-}
+.drink-card__foam-splash { display: none; }
 
 .drink-card__foam-splash:hover {
   transform: scale(1.3);
@@ -327,36 +263,13 @@
   margin-top: auto;
 }
 
-.drink-card__action-btn {
-  width: 100%;
-  padding: 16px 24px;
-  border: none;
-  border-radius: 16px;
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  position: relative;
-  overflow: hidden;
-}
+.drink-card__action-btn { width: 100%; padding: 16px 24px; border: none; border-radius: 16px; font-size: 16px; font-weight: 600; color: white; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; position: relative; overflow: hidden; }
 
-.drink-card__action-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
+.drink-card__action-btn:hover { }
 
-.drink-card__action-btn:active {
-  transform: translateY(0);
-}
+.drink-card__action-btn:active { }
 
-.drink-card__action-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
+.drink-card__action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* Animations */
 @keyframes activeGlow {
@@ -476,16 +389,10 @@
 }
 
 /* Performance optimizations */
-.drink-card * {
-  /* will-change: transform; */
-}
-
-.drink-card__video {
-  will-change: auto;
-}
-
+.drink-card__icon,
 .drink-card__bubble,
-.drink-card__foam-splash {
+.drink-card__foam-splash,
+.loop-video__layer {
   will-change: transform, opacity;
 }
 .loop-video {
@@ -501,15 +408,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.25s ease;
+  opacity: 1;
 }
 
 .loop-video__layer--active {
   opacity: 1;
 }
 
-.loop-status {
+.video-status {
   position: absolute;
   bottom: 12px;
   left: 12px;
@@ -517,6 +423,49 @@
   color: #fff;
   padding: 6px 10px;
   border-radius: 12px;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.6);
 }
+
+.video-indicator {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+}
+
+.drink-card__prep {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  border-top: 1px solid rgba(224, 224, 224, 0.12);
+  background: rgba(20, 20, 20, 0.85);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.prep-ticker {
+  width: 100%;
+  overflow: hidden;
+}
+
+.prep-track {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.prep-item {
+  font-size: 24px;
+  font-weight: 600;
+  color: #FFB300;
+}
+
+/* removed animation for low CPU */

@@ -1,32 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import PreparationPanel from './components/PreparationPanel';
+import React, { useState } from 'react';
 import ChargerCard from './components/ChargerCard';
 import './App.css';
 
 function App() {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [selectedIndex, setSelectedIndex] = useState(null);
-  const [isPreparingDrink, setIsPreparingDrink] = useState(false);
+  const [selectedIndex] = useState(null);
+  const [isPreparingDrink] = useState(false);
   
 
-  // Update time every second
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const handleDrinkSelection = (index) => {
-    if (isPreparingDrink) return;
-    setSelectedIndex(index);
-    setIsPreparingDrink(true);
-    setTimeout(() => {
-      setIsPreparingDrink(false);
-      setSelectedIndex(null);
-    }, 18000);
-  };
+  
 
   
 
@@ -43,14 +24,14 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="app-header__right">
+          {/* <div className="app-header__right">
             <div className="app-time">
               {currentTime.toLocaleTimeString()}
             </div>
             <div className="app-date">
               {currentTime.toLocaleDateString()}
             </div>
-          </div>
+          </div> */}
         </div>
       </header>
 
