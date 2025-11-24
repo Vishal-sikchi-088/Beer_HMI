@@ -195,7 +195,11 @@ body {
   height: 100px;
   object-fit: contain;
   filter: none;
-  transition: none;
+  /* transition: filter 200ms ease, transform 200ms ease, box-shadow 200ms ease; */
+  filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.9));
+  transform: scale(1.06);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+  border-radius: 50%;
 }
 
 .center-logo:hover { }

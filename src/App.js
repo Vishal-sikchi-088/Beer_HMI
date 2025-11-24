@@ -19,7 +19,7 @@ function App() {
         <div className="app-header__content">
           <div className="app-header__left">
             <div className="app-header__branding">
-              <img src="/quench_symbol.png" alt="Quench Logo" className="app-logo" />
+              {/* <img src="/quench_symbol.png" alt="Quench Logo" className="app-logo" /> */}
               <div className="app-header__text">
                 <h1 className="app-title">Quench Your Thirst</h1>
                 <p className="app-subtitle">Premium Beverage Station</p>
