@@ -7,9 +7,9 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #0F0F0F;
-  color: #E0E0E0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #0f0f0f;
+  color: #e0e0e0;
   overflow: hidden;
   user-select: none;
   -webkit-user-select: none;
@@ -21,7 +21,7 @@ body {
   width: 100vw;
   height: 100vh;
   min-height: 600px;
-  background: #0F0F0F;
+  background: #0f0f0f;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -68,7 +68,8 @@ body {
   transition: none;
 }
 
-.app-logo:hover { }
+.app-logo:hover {
+}
 
 /* removed glow keyframes */
 
@@ -87,7 +88,7 @@ body {
 .app-title {
   font-size: 2.5rem;
   font-weight: 300;
-  color: #E0E0E0;
+  color: #e0e0e0;
   letter-spacing: 2px;
   text-shadow: 0 0 20px rgba(224, 224, 224, 0.3);
   margin: 0;
@@ -103,7 +104,7 @@ body {
 .app-time {
   font-size: 1.8rem;
   font-weight: 400;
-  color: #E0E0E0;
+  color: #e0e0e0;
   text-shadow: 0 0 15px rgba(224, 224, 224, 0.2);
   margin-bottom: 2px;
 }
@@ -160,7 +161,8 @@ body {
   box-shadow: none;
 }
 
-.drink-card:hover { }
+.drink-card:hover {
+}
 
 /* Coca-Cola Card Specific */
 /* Coca-Cola styles removed to enforce beer-only UI */
@@ -172,8 +174,7 @@ body {
 
 .drink-card--beer:hover {
   border-color: rgba(255, 179, 0, 0.6);
-  box-shadow: 
-    0 20px 60px rgba(255, 179, 0, 0.2),
+  box-shadow: 0 20px 60px rgba(255, 179, 0, 0.2),
     inset 0 1px 0 rgba(255, 179, 0, 0.1);
 }
 
@@ -185,7 +186,7 @@ body {
   margin: 20px 0;
   position: relative;
   bottom: 85px;
-  border: solid #1A1A1A;
+  border: solid #1a1a1a;
   border-radius: 80px;
   background: #161717;
 }
@@ -202,7 +203,8 @@ body {
   border-radius: 50%;
 }
 
-.center-logo:hover { }
+.center-logo:hover {
+}
 
 /* removed motion */
 /* Tic Tac Toe */
@@ -216,7 +218,7 @@ body {
   border: 1px solid rgba(224, 224, 224, 0.12);
   border-radius: 16px;
   padding: 12px;
-  color: #E0E0E0;
+  color: #e0e0e0;
   z-index: 20;
 }
 
@@ -227,8 +229,19 @@ body {
   margin-bottom: 10px;
 }
 
-.ttt-turn { font-size: 16px; font-weight: 600; color: #FFB300; }
-.ttt-restart { padding: 6px 10px; border: none; border-radius: 10px; background: #2A2A2A; color: #E0E0E0; cursor: pointer; }
+.ttt-turn {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffb300;
+}
+.ttt-restart {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 10px;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  cursor: pointer;
+}
 
 .ttt-board {
   display: grid;
@@ -240,182 +253,184 @@ body {
 .ttt-cell {
   aspect-ratio: 1 / 1;
   min-height: 140px;
-  background: #1A1A1A;
+  background: #1a1a1a;
   border: 1px solid rgba(224, 224, 224, 0.12);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
 
-.ttt-icon { width: 54px; height: 54px; }
-.ttt-icon--beer { color: #FFD700; }
-.ttt-icon--bottle { color: #50C878; }
+.ttt-icon {
+  width: 54px;
+  height: 54px;
+}
+.ttt-icon--beer {
+  color: #ffd700;
+}
+.ttt-icon--bottle {
+  color: #50c878;
+}
 
-.ttt-result { margin-top: 10px; text-align: center; font-size: 16px; font-weight: 700; }
+.ttt-result {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+}
 
 /* removed motion */
-
-
 
 /* Responsive Design */
 @media (max-width: 1024px) {
   .app-header {
     padding: 15px 30px;
   }
-  
+
   .app-title {
     font-size: 2rem;
   }
-  
+
   .app-logo {
     width: 70px;
     height: 70px;
   }
-  
+
   .app-time {
     font-size: 1.5rem;
   }
-  
+
   .charger-cards {
     gap: 30px;
     max-width: 800px;
   }
-  
+
   .center-logo {
     width: 70px;
     height: 70px;
   }
-  
+
   .app-main {
     padding: 30px 15px 100px 15px;
     gap: 25px;
   }
-  
-  
 }
 
 @media (max-width: 768px) {
   .app-header {
     padding: 15px 20px;
   }
-  
+
   .app-title {
     font-size: 1.8rem;
   }
-  
+
   .app-subtitle {
     font-size: 0.9rem;
   }
-  
+
   .app-time {
     font-size: 1.3rem;
   }
-  
+
   .app-logo {
     width: 40px;
     height: 40px;
   }
-  
+
   .app-header__branding {
     gap: 12px;
   }
-  
+
   .app-date {
     font-size: 0.9rem;
   }
-  
+
   /* .cards-grid {
     max-width: none;
     height: 300px;
     gap: 20px;
   } */
-  
+
   .drink-card {
     height: 100%;
   }
-  
+
   .center-logo {
     width: 60px;
     height: 60px;
   }
-  
+
   .center-logo-section {
     margin: 15px 0;
   }
-  
+
   .app-main {
     padding: 20px 10px 80px 10px;
     gap: 20px;
   }
-  
-  
 }
 
 @media (max-width: 480px) {
   .app-header {
     padding: 10px 15px;
   }
-  
+
   .app-header__content {
     flex-direction: column;
     gap: 15px;
     text-align: center;
   }
-  
+
   .app-header__left,
   .app-header__right {
     align-items: center;
   }
-  
+
   .app-logo {
     width: 35px;
     height: 35px;
   }
-  
+
   .app-header__branding {
     gap: 10px;
   }
-  
+
   .app-title {
     font-size: 1.5rem;
   }
-  
+
   .app-subtitle {
     font-size: 0.8rem;
   }
-  
+
   .app-time {
     font-size: 1.2rem;
   }
-  
+
   .app-date {
     font-size: 0.8rem;
   }
-  
+
   .center-logo {
     width: 50px;
     height: 50px;
   }
-  
+
   .center-logo-section {
     margin: 10px 0;
   }
-  
+
   .drink-card {
     height: 280px;
   }
-  
-  
 }
 
 /* Animation Keyframes */
 /* removed motion */
 
 /* removed motion */
-
-
 
 /* Utility Classes */
 .text-center {
@@ -426,7 +441,8 @@ body {
   display: none;
 }
 
-.fade-in { }
+.fade-in {
+}
 
 /* removed motion */
 .ttt-backdrop {
@@ -438,17 +454,61 @@ body {
 
 .ttt-victory-line {
   position: absolute;
-  background: #FF0000;
+  background: #ff0000;
   opacity: 1;
 }
-.ttt-line-row-0 { top: calc(100% / 6); left: 0; width: 100%; height: 2px; }
-.ttt-line-row-1 { top: calc(100% / 2); left: 0; width: 100%; height: 2px; }
-.ttt-line-row-2 { top: calc(5 * 100% / 6); left: 0; width: 100%; height: 2px; }
-.ttt-line-col-0 { left: calc(100% / 6); top: 0; width: 2px; height: 100%; }
-.ttt-line-col-1 { left: calc(100% / 2); top: 0; width: 2px; height: 100%; }
-.ttt-line-col-2 { left: calc(5 * 100% / 6); top: 0; width: 2px; height: 100%; }
-.ttt-line-diag-main { width: 140%; height: 2px; left: -20%; top: 50%; transform: rotate(45deg); transform-origin: center; }
-.ttt-line-diag-anti { width: 140%; height: 2px; left: -20%; top: 50%; transform: rotate(-45deg); transform-origin: center; }
+.ttt-line-row-0 {
+  top: calc(100% / 6);
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+.ttt-line-row-1 {
+  top: calc(100% / 2);
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+.ttt-line-row-2 {
+  top: calc(5 * 100% / 6);
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+.ttt-line-col-0 {
+  left: calc(100% / 6);
+  top: 0;
+  width: 2px;
+  height: 100%;
+}
+.ttt-line-col-1 {
+  left: calc(100% / 2);
+  top: 0;
+  width: 2px;
+  height: 100%;
+}
+.ttt-line-col-2 {
+  left: calc(5 * 100% / 6);
+  top: 0;
+  width: 2px;
+  height: 100%;
+}
+.ttt-line-diag-main {
+  width: 140%;
+  height: 2px;
+  left: -20%;
+  top: 50%;
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+.ttt-line-diag-anti {
+  width: 140%;
+  height: 2px;
+  left: -20%;
+  top: 50%;
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
 
 .ttt-result--center {
   position: absolute;
@@ -469,7 +529,10 @@ body {
   gap: 10px;
 }
 
-.ttt-icon--win { width: 60px; height: 60px; }
+.ttt-icon--win {
+  width: 60px;
+  height: 60px;
+}
 
 .ttt-result-actions {
   display: flex;
@@ -482,15 +545,211 @@ body {
   border-radius: 12px;
   font-size: 16px;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
 }
 
-.ttt-btn--restart { background: #FFD700; color: #1A1A1A; }
-.ttt-btn--close { background: #FF4D4F; }
+.ttt-btn--restart {
+  background: #ffd700;
+  color: #1a1a1a;
+}
+.ttt-btn--close {
+  background: #ff4d4f;
+}
 
 /* removed neutral close style in favor of colored button */
 
 /* Blur game on win */
-.ttt-overlay--win .ttt-board { filter: blur(5px); }
-.ttt-overlay--win .ttt-header { filter: blur(3px); }
+.ttt-overlay--win .ttt-board {
+  filter: blur(5px);
+}
+.ttt-overlay--win .ttt-header {
+  filter: blur(3px);
+}
+.monte-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 19;
+}
+.monte-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(720px, 95vw);
+  background: rgba(22, 23, 23, 0.95);
+  border: 1px solid rgba(224, 224, 224, 0.12);
+  border-radius: 16px;
+  padding: 16px;
+  color: #e0e0e0;
+  z-index: 20;
+  will-change: transform;
+}
+/* .monte-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; } */
+.monte-head-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.monte-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffb300;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.monte-title-icon {
+  font-size: 36px;
+  color: #ffd700;
+}
+.monte-subtitle {
+  font-size: clamp(18px, 2.3vw, 24px);
+  font-weight: 900;
+  color: #d1bf57;
+  text-align: center;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.25);
+  margin-bottom: 10px;
+}
+.monte-close {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 10px;
+  background: #3a3a3a;
+  color: #e0e0e0;
+  cursor: pointer;
+}
+.monte-board {
+  position: relative;
+  height: 240px;
+}
+.monte-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 33.3333%;
+  height: 100%;
+  background: #1a1a1a;
+  border: 1px solid rgba(224, 224, 224, 0.12);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e0e0e0;
+  transition: transform 300ms ease;
+  transform-style: preserve-3d;
+}
+.monte-card__inner {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 300ms ease;
+}
+.monte-card__face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+}
+.monte-card__face--back {
+  transform: rotateY(180deg);
+}
+.monte-card--win {
+  border-color: #ffd700;
+}
+.monte-card--miss {
+  opacity: 0.8;
+}
+.monte-icon {
+  font-size: 48px;
+}
+.monte-icon--win {
+  color: #ffd700;
+}
+.monte-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.monte-result {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 800;
+}
+.monte-result-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+.monte-result-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.monte-result-text--win {
+  font-size: clamp(28px, 3.8vw, 48px);
+  font-weight: 900;
+  color: #ffd700;
+}
+.monte-result-text--lose {
+  font-size: clamp(28px, 3.8vw, 48px);
+  font-weight: 900;
+  color: #ff4d4f;
+}
+.monte-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+  min-height: 52px;
+}
+.monte-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+}
+.monte-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.monte-btn--restart {
+  background: #ffd700;
+  color: #1a1a1a;
+}
+.monte-btn--close {
+  background: #ff4d4f;
+}
+.monte-instructions {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 24px;
+  color: #ffb300;
+}
+.monte-btn--shuffle {
+  background: #ffd700;
+  color: #1a1a1a;
+}
+.monte-overlay--done .monte-card {
+  filter: blur(5px);
+}
+.monte-overlay--done .monte-header {
+  filter: blur(3px);
+}
+.monte-overlay--done .monte-instructions {
+  filter: blur(3px);
+}

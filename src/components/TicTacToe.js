@@ -57,7 +57,7 @@ export default function TicTacToe({ onClose }) {
       <div className={`ttt-overlay ${winner ? 'ttt-overlay--win' : ''}`} role="dialog" aria-label="Tic Tac Toe">
         <div className="ttt-header">
           <div className="ttt-turn">{player === 'P1' ? 'Beer Glass' : 'Beer Bottle'} turn</div>
-          <button className="ttt-restart" onClick={restart} aria-label="Restart">Restart</button>
+          <button className="ttt-btn ttt-btn--close" onClick={onClose} aria-label="Close">Close</button>
         </div>
         <div className="ttt-board" role="grid" aria-label="3x3 board">
           {winner && winner !== 'DRAW' && (

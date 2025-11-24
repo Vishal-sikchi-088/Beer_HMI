@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import ChargerCard from './components/ChargerCard';
 import TicTacToe from './components/TicTacToe';
+import MonteGame from './components/MonteGame';
 import './App.css';
 
 function App() {
   const [selectedIndex] = useState(null);
   const [isPreparingDrink] = useState(false);
   const [showTTT, setShowTTT] = useState(false);
+  const [showMonte, setShowMonte] = useState(false);
   
 
   
@@ -38,7 +40,7 @@ function App() {
       </header>
 
       <main className="app-main">
-        <div className="cards-grid" aria-label="Beer cards">
+        <div className="cards-grid" aria-label="Beer cards" onClick={() => setShowMonte(true)}>
           <ChargerCard
             isActive={true}
             disabled={isPreparingDrink && selectedIndex !== null && selectedIndex !== 0}
@@ -62,6 +64,13 @@ function App() {
           <>
             <div className="ttt-backdrop" onClick={() => setShowTTT(false)} />
             <TicTacToe onClose={() => setShowTTT(false)} />
+          </>
+        )}
+
+        {showMonte && (
+          <>
+            <div className="monte-backdrop" onClick={() => setShowMonte(false)} />
+            <MonteGame onClose={() => setShowMonte(false)} />
           </>
         )}
 

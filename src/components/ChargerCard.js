@@ -79,7 +79,7 @@ const ChargerCard = ({
           ariaLabel="Beer animated graphic"
           enableAudio={false}
           poster={`${process.env.PUBLIC_URL || ''}/beer_poster.jpg`}
-          sources={[{ src: videoSrc, type: 'video/webm' }]}
+          sources={[{ src: videoSrc, type: 'video/mp4' }]}
         />
       
       </div>
