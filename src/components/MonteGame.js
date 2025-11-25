@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FaBeer } from 'react-icons/fa';
 
 function shuffle(arr) {
@@ -18,13 +18,62 @@ export default function MonteGame({ onClose }) {
   const [result, setResult] = useState(null);
   const [phase, setPhase] = useState('reveal'); // reveal -> hide -> shuffle -> ready
   const [canShuffle, setCanShuffle] = useState(false);
+  const [instructionVisible, setInstructionVisible] = useState(false);
+  const [instructionText, setInstructionText] = useState('');
+  const timersRef = useRef([]);
+
+  const addTimeout = (fn, ms) => {
+    const id = setTimeout(fn, ms);
+    timersRef.current.push(id);
+    return id;
+  };
+  const addInterval = (fn, ms) => {
+    const id = setInterval(fn, ms);
+    timersRef.current.push(id);
+    return id;
+  };
+  const clearTimers = () => {
+    timersRef.current.forEach((id) => {
+      clearTimeout(id);
+      clearInterval(id);
+    });
+    timersRef.current = [];
+  };
 
   useEffect(() => {
     setPhase('reveal');
-    const t1 = setTimeout(() => {
-      setPhase('hide');
-    }, 3000);
-    return () => clearTimeout(t1);
+    const runInitialSequence = () => {
+      setInstructionText("Let's play Three Cards Monte");
+      setInstructionVisible(true);
+      addTimeout(() => {
+        setInstructionVisible(false);
+        addTimeout(() => {
+          setInstructionText('Track the Beer card');
+          setInstructionVisible(true);
+          addTimeout(() => {
+            setInstructionVisible(false);
+            addTimeout(() => {
+              addTimeout(() => {
+                setInstructionVisible(false);
+                addTimeout(() => {
+                  setPhase('hide');
+                  addTimeout(() => {
+                    setInstructionText('Watch carefully. Shuffling will start shortly.');
+                    setInstructionVisible(true);
+                    addTimeout(() => {
+                      setInstructionVisible(false);
+                      startShuffle()
+                    }, 2000);
+                  }, 1000);
+                }, 2000);
+              }, 2000);
+            }, 1000);
+          }, 1000);
+        }, 1500);
+      }, 3000);
+    };
+    runInitialSequence();
+    return () => clearTimers();
   }, []);
 
   useEffect(() => {
@@ -40,64 +89,100 @@ export default function MonteGame({ onClose }) {
     };
   }, [phase]);
 
-  const startShuffle = () => {
-    setIsShuffling(true);
-    setCanShuffle(false);
-    setPhase('shuffle');
-    let steps = 3;
-    let count = 0;
-    const id = setInterval(() => {
-      setPositions((pos) => {
-        const i = Math.floor(Math.random() * 3);
-        let j = Math.floor(Math.random() * 3);
-        if (j === i) j = (j + 1) % 3;
-        const next = pos.slice();
-        // swap the slot assignment for two card indices
-        for (let k = 0; k < 3; k++) {
-          if (k === i) next[k] = pos[j];
-          else if (k === j) next[k] = pos[i];
-        }
-        return next;
-      });
-      count++;
-      if (count >= steps) {
-        clearInterval(id);
-        setIsShuffling(false);
-        setPhase('ready');
-      }
-    }, 1000);
-  };
-
   const handleGuess = (i) => {
-    if (result || isShuffling || phase !== 'ready') return;
+    if (result || isShuffling || phase !== 'ready' || instructionVisible) return;
     setGuess(i);
     const winIndex = base.indexOf('WIN');
     setResult(winIndex === i ? 'WIN' : 'LOSE');
   };
 
   const restart = () => {
+    clearTimers();
+    setInstructionVisible(false);
+    setInstructionText('');
     setPositions(shuffle([0,1,2]));
     setGuess(null);
     setResult(null);
     setPhase('reveal');
     setCanShuffle(false);
-    const t1 = setTimeout(() => {
-      setPhase('hide');
-    }, 2000);
-    return () => clearTimeout(t1);
+    const runInitialSequence = () => {
+      setInstructionText("Let's play Three Cards Monte");
+      setInstructionVisible(true);
+      addTimeout(() => {
+        setInstructionVisible(false);
+        addTimeout(() => {
+          setInstructionText('Track the Beer card');
+          setInstructionVisible(true);
+          addTimeout(() => {
+            setInstructionVisible(false);
+            addTimeout(() => {
+              addTimeout(() => {
+                setInstructionVisible(false);
+                addTimeout(() => {
+                  setPhase('hide');
+                  addTimeout(() => {
+                    setInstructionText('Watch carefully. Shuffling will start shortly.');
+                    setInstructionVisible(true);
+                    addTimeout(() => {
+                      setInstructionVisible(false);
+                      startShuffle()
+                    }, 2000);
+                  }, 1000);
+                }, 2000);
+              }, 2000);
+            }, 1000);
+          }, 1000);
+        }, 1500);
+      }, 3000);
+    };
+    runInitialSequence();
+  };
+
+    const startShuffle = () => {
+    setCanShuffle(false);
+    addTimeout(() => {
+      setInstructionVisible(false);
+      addTimeout(() => {
+        setIsShuffling(true);
+        setPhase('shuffle');
+        let steps = 3;
+        let count = 0;
+        const id = addInterval(() => {
+          setPositions((pos) => {
+            const i = Math.floor(Math.random() * 3);
+            let j = Math.floor(Math.random() * 3);
+            if (j === i) j = (j + 1) % 3;
+            const next = pos.slice();
+            for (let k = 0; k < 3; k++) {
+              if (k === i) next[k] = pos[j];
+              else if (k === j) next[k] = pos[i];
+            }
+            return next;
+          });
+          count++;
+          if (count >= steps) {
+            clearInterval(id);
+            setIsShuffling(false);
+            setPhase('ready');
+            addTimeout(() => {
+                setInstructionText('Place your bet: Left, Center, or Right');
+                setInstructionVisible(true);            
+            }, 2000);
+
+            addTimeout(() => {
+              setInstructionVisible(false);
+            }, 5000);
+          }
+        }, 1000);
+      }, 1000);
+    }, 500);
   };
 
   return (
-    <div className={`monte-overlay ${result ? 'monte-overlay--done' : ''}`} role="dialog" aria-label="Monte Game">
+    <div className={`monte-overlay ${result ? 'monte-overlay--done' : ''} ${instructionVisible ? 'monte-overlay--instructions' : ''}`} role="dialog" aria-label="Monte Game">
       <div className="monte-header">
         <div className="monte-head-left">
           <div className="monte-title"><FaBeer className="monte-title-icon" /> Three Card Monte</div>
-          <div className="monte-subtitle">
-            {phase === 'reveal' && 'Note the winning card'}
-            {phase === 'hide' && 'Cards flipping. Press Shuffle to start'}
-            {phase === 'shuffle' && 'Watch the shuffle carefully'}
-            {phase === 'ready' && 'Place your bet: Left, Center, or Right'}
-          </div>
         </div>
       </div>
       <div className="monte-board" role="grid" aria-label="3 cards">
@@ -110,8 +195,8 @@ export default function MonteGame({ onClose }) {
               role="gridcell"
               aria-label={`Card ${i+1}`}
               onClick={() => handleGuess(i)}
-              disabled={!!result || isShuffling || phase !== 'ready'}
-              style={{ transform: `translateX(${positions[i] * 100}%)` }}
+              disabled={!!result || isShuffling || phase !== 'ready' || instructionVisible}
+              style={{ transform: `translateX(calc(${positions[i]} * (100% + var(--card-gap))))` }}
             >
               <div className="monte-card__inner" style={{ transform: `rotateY(${rot}deg)` }}>
                 <div className="monte-card__face monte-card__face--front">
@@ -136,16 +221,21 @@ export default function MonteGame({ onClose }) {
           </div>
         )}
       </div>
+      {instructionVisible && (
+        <div className="monte-instructions-overlay" role="status" aria-live="polite">
+          <div className="monte-instructions-overlay__content">{instructionText}</div>
+        </div>
+      )}
       
       <div className="monte-actions">
-        <button
+        {/* <button
           className="monte-btn monte-btn--shuffle"
           onClick={startShuffle}
           aria-label="Shuffle"
-          disabled={!canShuffle || !!result || isShuffling}
+          disabled={!canShuffle || !!result || isShuffling || instructionVisible}
         >
           Shuffle
-        </button>
+        </button> */}
       </div>
     </div>
   );

@@ -577,7 +577,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(720px, 95vw);
+  width: min(820px, 95vw);
   background: rgba(22, 23, 23, 0.95);
   border: 1px solid rgba(224, 224, 224, 0.12);
   border-radius: 16px;
@@ -600,6 +600,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 30px;
 }
 .monte-title-icon {
   font-size: 36px;
@@ -608,7 +609,7 @@ body {
 .monte-subtitle {
   font-size: clamp(18px, 2.3vw, 24px);
   font-weight: 900;
-  color: #d1bf57;
+  color: #ededed;
   text-align: center;
   text-shadow: 0 0 6px rgba(255, 215, 0, 0.25);
   margin-bottom: 10px;
@@ -624,15 +625,16 @@ body {
 .monte-board {
   position: relative;
   height: 240px;
+  --card-gap: 8px;
 }
 .monte-card {
   position: absolute;
   left: 0;
   top: 0;
-  width: 33.3333%;
+  width: calc((100% - 2 * var(--card-gap)) / 3);
   height: 100%;
   background: #1a1a1a;
-  border: 1px solid rgba(224, 224, 224, 0.12);
+  border: 1px solid rgba(255, 213, 0, 0.993);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -743,6 +745,8 @@ body {
 .monte-btn--shuffle {
   background: #ffd700;
   color: #1a1a1a;
+  padding: 10px 60px;
+  font-size: 30px;
 }
 .monte-overlay--done .monte-card {
   filter: blur(5px);
@@ -752,4 +756,41 @@ body {
 }
 .monte-overlay--done .monte-instructions {
   filter: blur(3px);
+}
+.monte-overlay--instructions .monte-board {
+  filter: blur(25px);
+}
+.monte-overlay--instructions .monte-header,
+.monte-overlay--instructions .monte-actions {
+  filter: blur(25px);
+}
+.monte-instructions-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(255, 215, 0, 0.1);
+  color: #ffb300;
+  font-size: clamp(20px, 2.6vw, 28px);
+  font-weight: 900;
+  margin: 8px 0 12px 0;
+  text-align: center;
+}
+.monte-instructions-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.monte-instructions-overlay__content {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(255, 215, 0, 0.12);
+  color: white;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 900;
+  text-align: center;
 }

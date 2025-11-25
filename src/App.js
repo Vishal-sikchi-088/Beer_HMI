@@ -9,6 +9,13 @@ function App() {
   const [isPreparingDrink] = useState(false);
   const [showTTT, setShowTTT] = useState(false);
   const [showMonte, setShowMonte] = useState(false);
+  React.useEffect(() => {
+    if (showTTT || showMonte) {
+      window.dispatchEvent(new Event('game:open'));
+    } else {
+      window.dispatchEvent(new Event('game:close'));
+    }
+  }, [showTTT, showMonte]);
   
 
   
@@ -44,10 +51,12 @@ function App() {
           <ChargerCard
             isActive={true}
             disabled={isPreparingDrink && selectedIndex !== null && selectedIndex !== 0}
+            beerName="Bridge to UtopIPA"
           />
           <ChargerCard
             isActive={true}
             disabled={isPreparingDrink && selectedIndex !== null && selectedIndex !== 1}
+            beerName="Daze Like Rice Lager"
           />
         </div>
         

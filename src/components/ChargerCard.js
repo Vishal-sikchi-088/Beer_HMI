@@ -17,7 +17,8 @@ const steps = [
 const ChargerCard = ({ 
   isActive, 
   onSelect, 
-  disabled 
+  disabled,
+  beerName
 }) => {
   const drinkColor = beerColor;
   const videoSrc = `${process.env.PUBLIC_URL || ''}/beer.mp4`;
@@ -55,7 +56,7 @@ const ChargerCard = ({
         </div>
         <div className="drink-card__title-container">
           <h2 className="drink-card__title">
-            Beer
+            {beerName}
           </h2>
           <p className="drink-card__subtitle">Ready to Serve</p>
         </div>

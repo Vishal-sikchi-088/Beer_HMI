@@ -66,6 +66,63 @@ function setupZoomGuards() {
 
 setupZoomGuards();
 
+function setupGameVideoController() {
+  const pausedState = new Map();
+  let active = false;
+  let monitorId = null;
+  const findVideos = () => Array.from(document.querySelectorAll('.cards-grid video, .drink-card__video-container video, .loop-video video'));
+  const forcePauseListener = (e) => {
+    if (active) {
+      const v = e.currentTarget;
+      try { v.pause(); } catch (_) {}
+    }
+  };
+  const openHandler = () => {
+    active = true;
+    const vids = findVideos();
+    vids.forEach((v) => {
+      const wasPlaying = !v.paused && !v.ended;
+      pausedState.set(v, { wasPlaying, time: v.currentTime });
+      try { v.pause(); } catch (_) {}
+      v.addEventListener('play', forcePauseListener);
+    });
+    if (!monitorId) {
+      let baseline = null;
+      monitorId = setInterval(() => {
+        const mem = performance && performance.memory ? performance.memory.usedJSHeapSize : null;
+        if (baseline == null && mem != null) baseline = mem;
+        const vidsNow = findVideos();
+        const playingCount = vidsNow.filter((v) => !v.paused && !v.ended).length;
+        const info = { playingCount, mem, baseline };
+        console.log('GameActiveResourceMonitor', info);
+      }, 2000);
+    }
+  };
+  const closeHandler = () => {
+    active = false;
+    const vids = findVideos();
+    vids.forEach((v) => {
+      v.removeEventListener('play', forcePauseListener);
+      const st = pausedState.get(v);
+      if (st) {
+        try {
+          v.currentTime = st.time || v.currentTime;
+          if (st.wasPlaying) v.play().catch(() => {});
+        } catch (_) {}
+      }
+    });
+    pausedState.clear();
+    if (monitorId) {
+      clearInterval(monitorId);
+      monitorId = null;
+    }
+  };
+  window.addEventListener('game:open', openHandler);
+  window.addEventListener('game:close', closeHandler);
+}
+
+setupGameVideoController();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
